@@ -3,107 +3,489 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teddy Bear Toys</title>
+  <title>Tata Motors | Car Selling Site</title>
+  <!-- Font Awesome for icons (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #fff8f0;
-      color: #333;
+      background: #f5f7fb;
+      color: #1e2b3a;
+      line-height: 1.5;
+      padding: 1.5rem;
     }
-    header {
-      background-color: #ffb6c1;
-      padding: 20px;
-      text-align: center;
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    nav {
-      margin-top: 10px;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    .hero {
-      text-align: center;
-      padding: 50px;
-      background-color: #ffe4e1;
-    }
-    .hero h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    .products {
+
+    /* Header */
+    .site-header {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: #0b2b4a;
+      color: white;
+      padding: 1rem 1.8rem;
+      border-radius: 24px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo-area h1 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-area h1 i {
+      color: #f9b234;
+      margin-right: 8px;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .contact {
+      background: #1e4b6e;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .contact i {
+      margin-right: 6px;
+      color: #f9b234;
+    }
+
+    /* Section title */
+    .section-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0b2b4a;
+    }
+
+    .section-title i {
+      color: #f9b234;
+      margin-right: 12px;
+      font-size: 2.2rem;
+    }
+
+    .section-title span {
+      border-bottom: 4px solid #f9b234;
+      padding-bottom: 6px;
+    }
+
+    /* Car grid */
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Car card */
+    .car-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-image {
+      background: #eef2f7;
+      display: flex;
       justify-content: center;
-      padding: 20px;
+      align-items: center;
+      padding: 1.2rem;
+      height: 200px;
+      overflow: hidden;
     }
-    .product {
-      background: #fff;
-      border: 2px solid #ffb6c1;
-      border-radius: 10px;
-      margin: 15px;
-      padding: 20px;
-      width: 250px;
+
+    .car-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+
+    .car-card:hover .car-image img {
+      transform: scale(1.02);
+    }
+
+    .car-info {
+      padding: 1.5rem 1.5rem 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .car-name {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b2b4a;
+      margin-bottom: 4px;
+    }
+
+    .car-type {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #5a6f84;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    .variants-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e4b6e;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #f9b234;
+      padding-left: 10px;
+    }
+
+    .variant-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .variant-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #d9e2ec;
+      padding-bottom: 0.55rem;
+    }
+
+    .variant-name {
+      font-weight: 500;
+      color: #1e2b3a;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .variant-name i {
+      color: #f9b234;
+      font-size: 0.7rem;
+      margin-right: 8px;
+    }
+
+    .variant-price {
+      font-weight: 700;
+      color: #0b2b4a;
+      background: #f0f4fa;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .price-note {
+      font-size: 0.7rem;
+      color: #8a9aa8;
+      text-align: right;
+      margin-top: -0.2rem;
+      margin-bottom: 0.4rem;
+      font-weight: 400;
+    }
+
+    .btn-details {
+      background: #0b2b4a;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: default;
+      transition: background 0.2s;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-details i {
+      color: #f9b234;
+    }
+
+    /* Footer */
+    .footer-note {
+      margin-top: 3rem;
       text-align: center;
+      color: #6f7e8f;
+      font-size: 0.9rem;
+      border-top: 1px solid #d0ddee;
+      padding-top: 1.8rem;
     }
-    .product img {
-      width: 100%;
-      border-radius: 10px;
+
+    .footer-note i {
+      color: #f9b234;
+      margin: 0 4px;
     }
-    footer {
-      background-color: #ffb6c1;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body { padding: 0.8rem; }
+      .site-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .section-title { font-size: 1.7rem; }
+      .car-name { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🧸 Teddy Bear Toys</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+<div class="container">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-area">
+      <h1><i class="fas fa-car"></i> Tata Motors</h1>
+      <div class="tagline">Drive the future, today.</div>
+    </div>
+    <div class="contact">
+      <i class="fas fa-phone-alt"></i> 1800 209 7979
+    </div>
   </header>
 
-  <section class="hero" id="home">
-    <h2>Welcome to Teddy Bear World!</h2>
-    <p>Find the cutest teddy bears for kids and collectors.</p>
-  </section>
+  <!-- Main heading -->
+  <div class="section-title">
+    <i class="fas fa-star"></i>
+    <span>Explore Tata Cars & Variants</span>
+  </div>
 
-  <section class="products" id="products">
-    <div class="product">
-      <img src="teddy1.jpg" alt="Classic Teddy Bear">
-      <h3>Classic Teddy</h3>
-      <p>Soft and cuddly, perfect for all ages.</p>
-      <p><strong>$25</strong></p>
-    </div>
-    <div class="product">
-      <img src="teddy2.jpg" alt="Brown Teddy Bear">
-      <h3>Brown Teddy</h3>
-      <p>Warm hugs guaranteed with this fluffy bear.</p>
-      <p><strong>$30</strong></p>
-    </div>
-    <div class="product">
-      <img src="teddy3.jpg" alt="Pink Teddy Bear">
-      <h3>Pink Teddy</h3>
-      <p>A sweet gift for someone special.</p>
-      <p><strong>$28</strong></p>
-    </div>
-  </section>
+  <!-- Car Grid -->
+  <div class="car-grid">
 
-  <footer id="contact">
-    <p>📧 Contact us: info@teddybear.com | ☎ +91-9876543210</p>
-    <p>&copy; 2026 Teddy Bear Toys</p>
-  </footer>
+    <!-- Tata Nexon -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/141115/tata-nexon-right-front-three-quarter-9.jpeg?isig=0&q=80" alt="Tata Nexon">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Nexon</h2>
+        <div class="car-type">Compact SUV</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Smart</span>
+            <span class="variant-price">₹ 8.15 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Pure</span>
+            <span class="variant-price">₹ 9.60 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Creative</span>
+            <span class="variant-price">₹ 11.40 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Fearless</span>
+            <span class="variant-price">₹ 13.20 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+    <!-- Tata Punch -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/139383/tata-punch-right-front-three-quarter-2.jpeg?isig=0&q=80" alt="Tata Punch">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Punch</h2>
+        <div class="car-type">Micro SUV</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Pure</span>
+            <span class="variant-price">₹ 6.13 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Adventure</span>
+            <span class="variant-price">₹ 7.45 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Accomplished</span>
+            <span class="variant-price">₹ 8.50 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Creative</span>
+            <span class="variant-price">₹ 9.20 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+    <!-- Tata Altroz -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/32597/tata-altroz-right-front-three-quarter-2.jpeg?isig=0&q=80" alt="Tata Altroz">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Altroz</h2>
+        <div class="car-type">Premium Hatchback</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XE</span>
+            <span class="variant-price">₹ 6.65 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XM</span>
+            <span class="variant-price">₹ 7.55 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XT</span>
+            <span class="variant-price">₹ 8.35 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XZ</span>
+            <span class="variant-price">₹ 9.40 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+    <!-- Tata Safari -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/140925/tata-safari-right-front-three-quarter-2.jpeg?isig=0&q=80" alt="Tata Safari">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Safari</h2>
+        <div class="car-type">Premium SUV</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Smart</span>
+            <span class="variant-price">₹ 15.50 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Pure</span>
+            <span class="variant-price">₹ 17.20 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Adventure</span>
+            <span class="variant-price">₹ 19.80 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Accomplished</span>
+            <span class="variant-price">₹ 22.40 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+    <!-- Tata Tiago -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/141139/tata-tiago-right-front-three-quarter-2.jpeg?isig=0&q=80" alt="Tata Tiago">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Tiago</h2>
+        <div class="car-type">Hatchback</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XE</span>
+            <span class="variant-price">₹ 5.65 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XM</span>
+            <span class="variant-price">₹ 6.40 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XT</span>
+            <span class="variant-price">₹ 7.05 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> XZ+</span>
+            <span class="variant-price">₹ 7.90 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+    <!-- Tata Harrier -->
+    <div class="car-card">
+      <div class="car-image">
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/141147/tata-harrier-right-front-three-quarter-2.jpeg?isig=0&q=80" alt="Tata Harrier">
+      </div>
+      <div class="car-info">
+        <h2 class="car-name">Harrier</h2>
+        <div class="car-type">Mid-size SUV</div>
+        <div class="variants-title">Variants & Prices</div>
+        <div class="variant-list">
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Smart</span>
+            <span class="variant-price">₹ 15.20 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Pure</span>
+            <span class="variant-price">₹ 16.80 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Adventure</span>
+            <span class="variant-price">₹ 19.50 Lakh</span>
+          </div>
+          <div class="variant-item">
+            <span class="variant-name"><i class="fas fa-circle"></i> Fearless</span>
+            <span class="variant-price">₹ 22.00 Lakh</span>
+          </div>
+        </div>
+        <div class="price-note">*Ex-showroom, Delhi</div>
+        <div class="btn-details"><i class="fas fa-file-invoice"></i> View details</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer note -->
+  <div class="footer-note">
+    <i class="fas fa-check-circle"></i> All prices are ex-showroom, Delhi. Variants and prices may vary by region. 
+    <i class="fas fa-check-circle"></i> Contact your nearest Tata dealership for exact on-road price.
+  </div>
+
+</div>
+
 </body>
 </html>
